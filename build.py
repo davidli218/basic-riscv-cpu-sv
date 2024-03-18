@@ -12,7 +12,12 @@ def build_module(module_name: str, waveform: bool):
     vpp_name = build_dir / f"{module_name}_tb.vvp"
     vcd_name = build_dir / f"{module_name}_tb.vcd"
 
-    subprocess.run(["iverilog", "-g2012", "-o", vpp_name, "-I", src_dir, test_name])
+    ret = subprocess.run(["iverilog", "-g2012", "-o", vpp_name, "-I", src_dir, test_name])
+
+    if ret.returncode != 0:
+        print("Compilation failed")
+        return
+
     subprocess.run(["vvp", vpp_name])
 
     if waveform:
