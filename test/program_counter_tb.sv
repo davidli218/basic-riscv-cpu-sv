@@ -30,22 +30,26 @@ module program_counter_tb;
         PCTarget = 32'h100;
         ALUResult = 32'h010;
 
+        #2; /* To avoid value update at negedge CLK,
+             * which will cause $display to show confused value */
+
         // [1] Test Reset PC
-        Reset = 1; PCSrc = 2'b00; #40;
+        Reset = 1; PCSrc = 2'b00; #20;
 
         // [2] Test PCSrc = 00
-        Reset = 0; PCSrc = 2'b00; #40;
+        Reset = 0; PCSrc = 2'b00; #20;
 
         // [3] Test PCSrc = 01
-        Reset = 0; PCSrc = 2'b01; #40;
+        Reset = 0; PCSrc = 2'b01; #20;
 
         // [4] Test PCSrc = 10
-        Reset = 0; PCSrc = 2'b10; #40;
+        Reset = 0; PCSrc = 2'b10; #20;
 
         // [5] Test PCSrc = 00 Base on [4]
-        Reset = 0; PCSrc = 2'b00; #40;
+        Reset = 0; PCSrc = 2'b00; #20;
 
-        #5; // To avoid missing last $display
+        #2; /* To avoid missing last $display */
+
         $finish;
     end
 
