@@ -25,12 +25,13 @@ module alu (
 
     always_comb begin
         case (ALUControl)
-            3'b000: ALUResult = SrcA + SrcB;
-            3'b001: ALUResult = SrcA - SrcB;
-            3'b010: ALUResult = SrcA & SrcB;
-            3'b011: ALUResult = SrcA | SrcB;
-            3'b100: ALUResult = SrcB;
-            3'b101: ALUResult = {32'b0, SrcA < SrcB};
+            3'b000:  ALUResult = SrcA + SrcB;
+            3'b001:  ALUResult = SrcA - SrcB;
+            3'b010:  ALUResult = SrcA & SrcB;
+            3'b011:  ALUResult = SrcA | SrcB;
+            3'b100:  ALUResult = SrcB;
+            3'b101:  ALUResult = {31'b0, SrcA < SrcB};
+            default: ALUResult = 32'b0;
         endcase
     end
 
