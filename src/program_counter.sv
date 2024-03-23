@@ -11,6 +11,8 @@ module program_counter (
 
     assign PCPlus4 = PC + 32'h4;
 
+    initial PC = 32'h0;
+
     always_ff @(posedge CLK or posedge Reset) begin
         if (Reset) PC <= 32'h0;
         else PC <= PCNext;
