@@ -28,7 +28,7 @@ def main():
     parser = argparse.ArgumentParser(description='Build a SystemVerilog module')
 
     parser.add_argument(
-        '-m', '--module', required=True,
+        'module', type=str,
         help='Compile the specified module and run the testbench'
     )
 
