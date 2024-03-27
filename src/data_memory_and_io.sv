@@ -1,3 +1,9 @@
+/* Data Memory and I/O Module
+ *
+ * This module implements a byte-addressable data memory with 1024 Bytes.
+ * 0xFFFFFFFC is the address mapped to the CPU's output.
+*/
+
 module data_memory_and_io (
     output logic [31:0] RD,
     output logic [31:0] CPUOut,
@@ -12,7 +18,6 @@ module data_memory_and_io (
     logic RDsel, WEM, WEOut;
 
     assign RDsel = (A == 32'hFFFFFFFC) ? 1 : 0;
-
     assign RD = (RDsel) ? CPUIn : {DM[A+3], DM[A+2], DM[A+1], DM[A]};
 
     always_comb begin
