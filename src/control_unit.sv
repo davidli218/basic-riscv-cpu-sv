@@ -113,7 +113,7 @@ module control_unit (
             // [lui]
             7'b0110111: begin
                 ALUSrc     = 1'b1;
-                ALUControl = 3'b111;
+                ALUControl = 3'b100;
                 ImmSrc     = 3'b100;
             end
         endcase
