@@ -16,6 +16,7 @@ module risc_v_tb;
 
     // Generate clock signal with 20 ns period
     initial begin
+        CPUIn = 32'h00000FFF;
         CLK = 0;
         forever #10 CLK = ~CLK;
     end
