@@ -142,4 +142,4 @@ load_max_int32:
 
 # func exit()
 exit:
-    jal  t0, exit                         # end
+    beq  zero, zero, exit                 # infinite loop
