@@ -16,9 +16,13 @@ module risc_v_tb;
 
     // Generate clock signal with 20 ns period
     initial begin
-        CPUIn = 32'h0000000F;
         CLK = 0;
         forever #10 CLK = ~CLK;
+    end
+
+    // Set CPU input
+    initial begin
+        CPUIn = 32'h0000000F;
     end
 
     // Exit simulation when the PC stops changing
