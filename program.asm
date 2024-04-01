@@ -24,7 +24,7 @@
     addi sp, zero, 499                    # Stack Top is 499
 
 # Initialize S Registers
-    andi s0, s0,   0xF                    # fib_n = fib_n > 15 ? 15 : fib_n
+    andi s0, s0,   0x3F                   # fib_n = fib_n > 63 ? fib_n & 0x3F : fib_n
     addi s1, zero, 600                    # fib_array_addr = 600
     addi s2, zero, 3                      # magic_int_n = 3
     addi s3, zero, 700                    # magic_int_addr = 700
@@ -34,14 +34,14 @@
     add  a1, zero, s1
     jal  ra, fib
 
+# Call load_3magic_int(magic_int_addr)
+    add  a0, zero, s3
+    jal  ra, load_3magic_int
+
 # Call output_array(fib_array_addr, fib_n)
     add  a0, zero, s1
     add  a1, zero, s0
     jal  ra, output_array
-
-# Call load_3magic_int(magic_int_addr)
-    add  a0, zero, s3
-    jal  ra, load_3magic_int
 
 # Call output_array(magic_int_addr, magic_int_n)
     add  a0, zero, s3
