@@ -52,7 +52,7 @@
     jal  ra, exit
 
 
-# func fib(int n, int* result_array_addr) -> void
+# fn fib(i32 n, i32* result_array_addr) -> void
 fib:
     addi t1, zero, 0                      # i = 0
     add  t2, zero, a1                     # mem_addr = result_array_addr
@@ -80,7 +80,7 @@ fib_end:
     jalr t0, 0(ra)                        # return
 
 
-# func output_array(int* array_addr, int length) -> void
+# fn output_array(i32* array_addr, i32 length) -> void
 output_array:
     addi t1, zero, 0                      # i = 0
     add  t2, zero, a0                     # mem_ptr = result_array_addr
@@ -102,7 +102,7 @@ output_array_end:
     jalr t5, 0(ra)                        # return
 
 
-# func load_3magic_int(dest_array_addr)
+# fn load_3magic_int(i32* dest_array_addr) -> void
 load_3magic_int:
     sw   ra, 0(sp)                        # push ra
     addi sp, sp, -4                       # sp -= 4
@@ -131,7 +131,7 @@ load_3magic_int:
     jalr t0, 0(ra)                        # return
 
 
-# func load_max_int32() -> int
+# fn load_max_int32() -> i32
 load_max_int32:
     lui  a0, 0x7FFFF
     ori  a0, a0, 0x7FF
@@ -140,6 +140,6 @@ load_max_int32:
     jalr t0, 0(ra)                        # return 0x7FFFFFFF
 
 
-# func exit()
+# fn exit() -> noreturn
 exit:
     beq  zero, zero, exit                 # infinite loop
