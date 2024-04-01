@@ -16,7 +16,7 @@ module risc_v_tb;
 
     // Generate clock signal with 20 ns period
     initial begin
-        CPUIn = 32'h00000FFF;
+        CPUIn = 32'h0000000F;
         CLK = 0;
         forever #10 CLK = ~CLK;
     end
@@ -30,13 +30,8 @@ module risc_v_tb;
     // Print CPU state
     always @(negedge CLK)
         $display(
-            "t = %3d, CPUIn = %d, CPUOut = %d, Reset = %b, PC = %d, ALUResult = %d",
-            $time,
-            CPUIn,
-            CPUOut,
-            Reset,
-            dut.PcCurrent,
-            dut.AluResult
+            "t = %3d, CPUIn = %d, CPUOut = %d, Reset = %b, PC = %d",
+            $time, CPUIn, CPUOut, Reset, dut.PcCurrent
         );
 
     // Dump VCD file
