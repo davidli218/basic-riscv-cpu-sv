@@ -33,20 +33,11 @@ module program_counter_tb;
         #2; /* To avoid value update at negedge CLK,
              * which will cause $display to show confused value */
 
-        // [1] Test Reset PC
-        Reset = 1; PCSrc = 2'b00; #20;
-
-        // [2] Test PCSrc = 00
-        Reset = 0; PCSrc = 2'b00; #20;
-
-        // [3] Test PCSrc = 01
-        Reset = 0; PCSrc = 2'b01; #20;
-
-        // [4] Test PCSrc = 10
-        Reset = 0; PCSrc = 2'b10; #20;
-
-        // [5] Test PCSrc = 00 Base on [4]
-        Reset = 0; PCSrc = 2'b00; #20;
+        Reset = 1; PCSrc = 2'b00; #40; // [1] Test Reset PC
+        Reset = 0; PCSrc = 2'b00; #20; // [2] Test PCSrc = 00
+        Reset = 0; PCSrc = 2'b01; #20; // [3] Test PCSrc = 01
+        Reset = 0; PCSrc = 2'b10; #20; // [4] Test PCSrc = 10
+        Reset = 0; PCSrc = 2'b00; #20; // [5] Test PCSrc = 00 Base on [4]
 
         #2; /* To avoid missing last $display */
 
