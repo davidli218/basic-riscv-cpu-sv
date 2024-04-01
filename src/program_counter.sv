@@ -13,7 +13,7 @@ module program_counter (
 
     initial PC = 32'h0;
 
-    always_ff @(posedge CLK or posedge Reset) begin
+    always_ff @(posedge CLK) begin
         if (Reset) PC <= 32'h0;
         else PC <= PCNext;
     end
