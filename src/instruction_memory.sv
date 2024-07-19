@@ -7,7 +7,7 @@ module instruction_memory (
     logic [31:0] prog[0:255];
     logic [31:0] PC_divided_by_4;
 
-    initial $readmemh("program.txt", prog);
+    initial $readmemh("src/rom/program.hex", prog);
 
     assign Instr = prog[PC_divided_by_4];
 
