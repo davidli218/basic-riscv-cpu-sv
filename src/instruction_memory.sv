@@ -4,7 +4,9 @@ module instruction_memory (
 );
 
     logic [31:0] prog[0:255];
+    /* verilator lint_off UNUSEDSIGNAL */
     logic [31:0] PC_divided_by_4;
+    /* verilator lint_on UNUSEDSIGNAL */
 
     initial $readmemh("src/rom/program.hex", prog);
 

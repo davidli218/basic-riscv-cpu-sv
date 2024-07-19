@@ -6,7 +6,9 @@ module control_unit (
     output logic RegWrite,
     output logic [2:0] ALUControl,
     output logic [2:0] ImmSrc,
+    /* verilator lint_off UNUSEDSIGNAL */
     input logic [31:0] Instr,
+    /* verilator lint_on UNUSEDSIGNAL */
     input logic Zero
 );
 

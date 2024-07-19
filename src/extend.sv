@@ -1,6 +1,8 @@
 module extend (
     output logic [31:0] ImmExt,
+    /* verilator lint_off UNUSEDSIGNAL */
     input  logic [31:0] Instr,
+    /* verilator lint_on UNUSEDSIGNAL */
     input  logic [ 2:0] ImmSrc
 );
 
