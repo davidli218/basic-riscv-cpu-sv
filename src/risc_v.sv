@@ -47,7 +47,7 @@ module risc_v (
         endcase
     end
 
-    program_counter PC (
+    program_counter ProgramCounter (
         .PC(PcCurrent),
         .PCPlus4(PcNext),
         .PCTarget(PcImmTarget),
@@ -57,7 +57,7 @@ module risc_v (
         .CLK(CLK)
     );
 
-    instruction_memory InstMem (
+    instruction_memory InstrMemory (
         .Instr(Instr),
         .PC(PcCurrent)
     );
@@ -85,7 +85,7 @@ module risc_v (
         .CLK(CLK)
     );
 
-    extend Ext (
+    extend Extend (
         .ImmExt(ExtendedImm),
         .Instr (Instr),
         .ImmSrc(Ctl_ImmSrc)
@@ -99,7 +99,7 @@ module risc_v (
         .ALUControl(Ctl_AluMode)
     );
 
-    data_memory_and_io MemIO (
+    data_memory_and_io DataMemIO (
         .RD(MemDataR),
         .CPUOut(CPUOut),
         .A(AluResult),
