@@ -20,9 +20,9 @@ module program_counter (
 
     always_comb begin
         case (PCSrc)
-            2'b00: PCNext = PCPlus4;
-            2'b01: PCNext = PCTarget;
-            2'b10: PCNext = ALUResult;
+            2'b01:   PCNext = PCTarget;
+            2'b10:   PCNext = ALUResult;
+            default: PCNext = PCPlus4;
         endcase
     end
 

@@ -40,9 +40,10 @@ module risc_v (
 
     always_comb begin
         case (Ctl_ResultSrc)
-            2'b00: Result = AluResult;
-            2'b01: Result = MemDataR;
-            2'b10: Result = PcNext;
+            2'b00:   Result = AluResult;
+            2'b01:   Result = MemDataR;
+            2'b10:   Result = PcNext;
+            default: Result = 32'b0;
         endcase
     end
 

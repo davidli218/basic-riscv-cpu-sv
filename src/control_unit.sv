@@ -36,18 +36,22 @@ module control_unit (
                 case (funct7)
                     7'b0000000: begin
                         case (funct3)
-                            3'b000: ALUControl = 3'b000;  // add
-                            3'b111: ALUControl = 3'b010;  // and
-                            3'b110: ALUControl = 3'b011;  // or
-                            3'b010: ALUControl = 3'b101;  // slt
+                            3'b000:  ALUControl = 3'b000;  // add
+                            3'b111:  ALUControl = 3'b010;  // and
+                            3'b110:  ALUControl = 3'b011;  // or
+                            3'b010:  ALUControl = 3'b101;  // slt
+                            default: ;
                         endcase
                     end
 
                     7'b0100000: begin
                         case (funct3)
-                            3'b000: ALUControl = 3'b001;  // sub
+                            3'b000:  ALUControl = 3'b001;  // sub
+                            default: ;
                         endcase
                     end
+
+                    default: ;
                 endcase
             end
 
@@ -55,9 +59,10 @@ module control_unit (
             7'b0010011: begin
                 ALUSrc = 1'b1;
                 case (funct3)
-                    3'b000: ALUControl = 3'b000;  // addi
-                    3'b110: ALUControl = 3'b011;  // ori
-                    3'b111: ALUControl = 3'b010;  // andi
+                    3'b000:  ALUControl = 3'b000;  // addi
+                    3'b110:  ALUControl = 3'b011;  // ori
+                    3'b111:  ALUControl = 3'b010;  // andi
+                    default: ;
                 endcase
             end
 
@@ -68,6 +73,8 @@ module control_unit (
                         ResultSrc = 2'b01;
                         ALUSrc    = 1'b1;
                     end
+
+                    default: ;
                 endcase
             end
 
@@ -79,6 +86,8 @@ module control_unit (
                         ALUSrc    = 1'b1;
                         ImmSrc    = 3'b001;
                     end
+
+                    default: ;
                 endcase
             end
 
@@ -91,6 +100,8 @@ module control_unit (
                         ALUControl = 3'b001;
                         ImmSrc     = 3'b010;
                     end
+
+                    default: ;
                 endcase
             end
 
@@ -116,6 +127,8 @@ module control_unit (
                 ALUControl = 3'b100;
                 ImmSrc     = 3'b100;
             end
+
+            default: ;
         endcase
     end
 
