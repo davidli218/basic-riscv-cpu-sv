@@ -3,3 +3,6 @@
 
 *.vvp
 *.vcd
+
+obj_dir/
+logs/
