@@ -5,13 +5,13 @@ module risc_v_tb;
     logic [31:0] CPUOut, CPUIn;
     logic Reset, CLK;
 
-    logic [31:0] pc_prev;
+    logic [31:0] pc_prev, cpu_out_prev;
 
     risc_v dut (
-        CPUOut,
-        CPUIn,
-        Reset,
-        CLK
+        .CPUOut(CPUOut),
+        .CPUIn(CPUIn),
+        .Reset(Reset),
+        .CLK(CLK)
     );
 
     // Generate clock signal with 20 ns period
@@ -22,26 +22,31 @@ module risc_v_tb;
 
     // Set CPU input
     initial begin
+        Reset = 0;
         CPUIn = 32'h0000000F;
     end
 
     // Exit simulation when the PC stops changing
     always @(posedge CLK) begin
+        #5;
         if (dut.PcCurrent == pc_prev) $finish;
-        pc_prev = dut.PcCurrent;
+        else pc_prev <= dut.PcCurrent;
     end
 
     // Print CPU state
     always @(negedge CLK)
-        $display(
-            "t = %3d, CPUIn = %d, CPUOut = %d, Reset = %b, PC = %d",
-            $time, CPUIn, CPUOut, Reset, dut.PcCurrent
-        );
+        if (CPUOut != cpu_out_prev) begin
+            cpu_out_prev <= CPUOut;
+            if (CPUOut != 0)
+                $display(
+                    "[t = %3d] CPUIn = %d, CPUOut = %d, Reset = %b, PC = %d", $time, CPUIn, CPUOut, Reset, dut.PcCurrent
+                );
+        end
 
     // Dump VCD file
     initial begin
-        $dumpfile("risc_v_tb.vcd");
-        $dumpvars(0, risc_v_tb);
+        $dumpfile("./logs/risc_v_tb.vcd");
+        $dumpvars;
     end
 
 endmodule

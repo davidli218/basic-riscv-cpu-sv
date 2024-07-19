@@ -27,11 +27,11 @@ module program_counter_tb;
 
     initial begin
 
-        PCTarget = 32'h100;
+        PCTarget  = 32'h100;
         ALUResult = 32'h010;
 
-        #2; /* To avoid value update at negedge CLK,
-             * which will cause $display to show confused value */
+        #2;  /* To avoid value update at negedge CLK,
+              * which will cause $display to show confused value */
 
         Reset = 1; PCSrc = 2'b00; #40; // [1] Test Reset PC
         Reset = 0; PCSrc = 2'b00; #20; // [2] Test PCSrc = 00
@@ -46,13 +46,13 @@ module program_counter_tb;
 
     always @(negedge CLK)
         $display(
-            "t = %3d, Reset = %b, PCSrc = %b, PCTarget = %d, ALUResult = %d, PC = %d, PCPlus4 = %d",
-            $time, Reset, PCSrc, PCTarget, ALUResult, PC, PCPlus4,
+            "[t = %3d] Reset = %b, PCSrc = %b, PCTarget = %4d, ALUResult = %4d, PC = %4d, PCPlus4 = %4d",
+            $time, Reset, PCSrc, PCTarget, ALUResult, PC, PCPlus4
         );
 
     initial begin
-        $dumpfile("./build/program_counter_tb.vcd");
-        $dumpvars(0, program_counter_tb);
+        $dumpfile("./logs/program_counter_tb.vcd");
+        $dumpvars;
     end
 
 endmodule
